@@ -24,4 +24,4 @@
     - name: Apply Argo CD Root App
       kubernetes.core.k8s:
         state: present
-        src: ../manifests/root-app.yaml
+        src: https://raw.githubusercontent.com/ShehabGamal689/nawy-task-platform-gitops/main/manifests/root-app.yaml
