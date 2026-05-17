@@ -1,1 +1,28 @@
+- name: Bootstrap EKS with Argo CD
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: Create argocd namespace
+      kubernetes.core.k8s:
+        name: argocd
+        api_version: v1
+        kind: Namespace
+        state: present
 
+    - name: Install Argo CD via Helm
+      kubernetes.core.helm:
+        name: argocd
+        chart_ref: argo/argo-cd
+        release_namespace: argocd
+        create_namespace: true
+        wait: true
+
+    - name: Install Argo CD Image Updater
+      kubernetes.core.k8s:
+        state: present
+        src: https://raw.githubusercontent.com/argoproj-labs/argocd-image-updater/stable/manifests/install.yaml
+
+    - name: Apply Argo CD Root App
+      kubernetes.core.k8s:
+        state: present
+        src: ../manifests/root-app.yaml
