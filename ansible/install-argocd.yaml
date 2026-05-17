@@ -19,7 +19,7 @@
       kubernetes.core.k8s:
         state: present
         namespace: argocd
-        src: https://raw.githubusercontent.com/argoproj-labs/argocd-image-updater/stable/manifests/install.yaml
+        src: https://raw.githubusercontent.com/argoproj-labs/argocd-image-updater/v0.12.2/manifests/install.yaml
 
     - name: Apply Argo CD Root App
       kubernetes.core.k8s:
