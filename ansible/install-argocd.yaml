@@ -9,7 +9,7 @@
         kind: Namespace
         state: present
 
-    - name: Install Argo CD (Lightweight Version)
+    - name: Install Argo CD 
       kubernetes.core.k8s:
         state: present
         namespace: argocd
