@@ -116,7 +116,7 @@ The cluster is monitored using **New Relic**. A custom NRQL query and workflow a
 
 ---
 
-## 🤔 Assumptions Made
+## Assumptions Made
 During the development and architecture of this solution, the following assumptions were made:
 
 1. **State Management:** It is assumed the user already has an AWS S3 bucket created for Terraform remote state storage, as creating a bucket via the same Terraform state it intends to use creates a chicken-and-egg dependency.
