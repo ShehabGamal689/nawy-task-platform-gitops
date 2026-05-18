@@ -131,5 +131,5 @@ To destroy the cluster and avoid incurring unnecessary AWS charges, run the foll
 
 ```bash
 cd infra
-terraform destroy -var="github_token=YOUR_GITHUB_TOKEN" -backend-config="bucket=YOUR_S3_BUCKET"
+terraform destroy -var="github_token=YOUR_GITHUB_TOKEN"
 ```
