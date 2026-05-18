@@ -1,40 +1,61 @@
 #!/bin/bash
 
-# Exit immediately if a command exits with a non-zero status
 set -e
 
-echo "🚀 Starting Nawy Task Automated Deployment..."
+echo "Starting Nawy Task Automated Deployment..."
 echo "================================================="
 
-# 1. Securely ask for the GitHub Token (so it doesn't save in your bash history)
-read -sp "Enter your GitHub Personal Access Token (ghp_...): " GITHUB_TOKEN
-echo ""
-echo "✅ Token received."
+if [ -f "venv/bin/activate" ]; then
+    source venv/bin/activate
+fi
 
-# 2. Provision Infrastructure (EKS + Secrets)
-echo "🏗️  Step 1: Provisioning AWS EKS and Secrets via Terraform..."
+read -p "Enter your S3 Bucket Name for Terraform State: " S3_BUCKET
+read -p "Enter your GitHub Username: " GITHUB_USERNAME
+read -sp "Enter your GitHub Personal Access Token: " GITHUB_TOKEN
+echo -e "\n✅ Credentials received."
+echo "================================================="
+
+echo "Step 1: Terraform Apply..."
 cd infra
-terraform init
-# We pass the token securely to Terraform in memory
+
+terraform init -backend-config="bucket=$S3_BUCKET" -upgrade
+
 terraform apply -var="github_token=$GITHUB_TOKEN" -auto-approve
-echo "✅ Infrastructure provisioned successfully."
 
-# 3. Update Local Kubeconfig
-echo "🔌 Step 2: Connecting to the new EKS cluster..."
-# NOTE: Replace 'your-region' and 'your-cluster-name' with your actual AWS region and cluster name!
-# Example: aws eks update-kubeconfig --region us-east-1 --name nawy-cluster
-aws eks update-kubeconfig --region us-east-1 --name nawy-cluster 
-echo "✅ Cluster connected."
-
-# 4. Run Ansible Configuration (e.g., Installing ArgoCD, NGINX, etc.)
-echo "⚙️  Step 3: Running Ansible Playbooks..."
-cd ../ansible
-# Run your playbook (update 'playbook.yml' to whatever your actual file is named)
-ansible-playbook playbook.yml
-echo "✅ Ansible configuration complete."
+CLUSTER_NAME=$(terraform output -raw cluster_name)
+AWS_REGION=$(terraform output -raw aws_region)
+cd ..
 
 echo "================================================="
-echo "🎉 DEPLOYMENT COMPLETE! 🎉"
-echo "Your GitOps loop is now active. Argo CD is taking over!"
-echo ""
-echo "Run 'kubectl get pods -A' to watch your environment spin up."
+
+
+echo "Step 2: Connecting to EKS Cluster ($CLUSTER_NAME)..."
+aws eks update-kubeconfig --region $AWS_REGION --name $CLUSTER_NAME
+
+echo "================================================="
+
+echo "Step 3: Kubernetes Secrets Setup..."
+
+kubectl create namespace argocd --dry-run=client -o yaml | kubectl apply -f -
+kubectl create namespace nawy-app --dry-run=client -o yaml | kubectl apply -f -
+kubectl create namespace newrelic --dry-run=client -o yaml | kubectl apply -f -
+
+echo "Fetching GitHub token from AWS Secrets Manager..."
+FETCHED_TOKEN=$(aws secretsmanager get-secret-value --secret-id gitops-secrets-vault --query SecretString --output text --region $AWS_REGION)
+
+
+kubectl create secret generic github-token --from-literal=username=$GITHUB_USERNAME --from-literal=password=$FETCHED_TOKEN -n argocd --dry-run=client -o yaml | kubectl apply -f -
+kubectl create secret docker-registry ghcr-login --docker-server=ghcr.io --docker-username=ShehabGamal689 --docker-password=$FETCHED_TOKEN -n nawy-app --dry-run=client -o yaml | kubectl apply -f -
+
+echo "✅ Secrets successfully injected into the cluster."
+echo "================================================="
+
+
+echo "Step 4: Running Ansible Bootstrapping..."
+cd ansible
+
+ansible-playbook install-argocd.yaml
+
+echo "================================================="
+echo "🎉 DEPLOYMENT COMPLETE!"
+echo "To check Argo CD pod status, run: kubectl get pods -n argocd"
