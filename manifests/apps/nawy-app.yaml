@@ -5,8 +5,9 @@ metadata:
   namespace: argocd
   annotations:
     argocd-image-updater.argoproj.io/image-list: myapp=ghcr.io/shehabgamal689/nawy-task-app
-    argocd-image-updater.argoproj.io/myapp.allow-tags: regexp:^[0-9a-f]{40}$|^latest$
     argocd-image-updater.argoproj.io/myapp.update-strategy: digest 
+    argocd-image-updater.argoproj.io/myapp.pull-parameter: latest
+    argocd-image-updater.argoproj.io/myapp.allow-tags: regexp:^[0-9a-f]{40}$|^latest$
     argocd-image-updater.argoproj.io/write-back-method: git:secret:argocd/github-token
     argocd-image-updater.argoproj.io/myapp.helm.image-name: image.repository
     argocd-image-updater.argoproj.io/myapp.helm.image-tag: image.tag
