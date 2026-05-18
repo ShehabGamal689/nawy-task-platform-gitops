@@ -6,11 +6,11 @@ image:
   pullPolicy: IfNotPresent
 
 service:
-  type: ClusterIP
+  type: LoadBalancer
   port: 80
 
 ingress:
-  enabled: true
+  enabled: false
   className: "alb" 
   hosts:
     - host: nawy-app.local
