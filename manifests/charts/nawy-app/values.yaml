@@ -1,1 +1,27 @@
+replicaCount: 2
 
+image:
+  repository: ghcr.io/YOUR_GITHUB_USER/nawy-app
+  tag: "latest" 
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: true
+  className: "alb" 
+  hosts:
+    - host: nawy-app.local
+      paths:
+        - path: /
+          pathType: Prefix
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 250m
+    memory: 256Mi
