@@ -1,1 +1,24 @@
-
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: nawy-app
+  namespace: argocd
+  annotations:
+    argocd-image-updater.argoproj.io/image-list: myapp=ghcr.io/shehabgamal689/nawy-task-app
+    argocd-image-updater.argoproj.io/myapp.update-strategy: latest 
+    argocd-image-updater.argoproj.io/write-back-method: git
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/ShehabGamal689/nawy-task-platform-gitops.git'
+    targetRevision: HEAD
+    path: manifests/charts/nawy-app 
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: nawy-app
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
