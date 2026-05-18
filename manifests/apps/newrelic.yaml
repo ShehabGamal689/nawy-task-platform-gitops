@@ -17,13 +17,13 @@ spec:
           licenseKey: "eb60b1f8612a460cd613d404b8c44182f0dfNRAL"
           cluster: "nawy-cluster"
         newrelic-infrastructure:
-          kms:
-           resource:s
-            limits:
-             memory: 256 Mi
-            requests:
-             memory: 128Mi
           privileged: true
+          ksm: # Fixed: changed from kms to ksm (Kube State Metrics)
+            resources: # Fixed: removed the extra :s typo
+              limits:
+                memory: 256Mi # Fixed: removed space
+              requests:
+                memory: 128Mi
         newrelic-logging:
           enabled: true
   destination:
@@ -32,5 +32,6 @@ spec:
   syncPolicy:
     automated:
       prune: true
+      selfHeal: true 
     syncOptions:
       - CreateNamespace=true
