@@ -15,7 +15,7 @@ spec:
   project: default
   source:
     repoURL: 'https://github.com/ShehabGamal689/nawy-task-platform-gitops.git'
-    targetRevision: HEAD
+    targetRevision: main
     path: manifests/charts/nawy-app
   destination:
     server: 'https://kubernetes.default.svc'
