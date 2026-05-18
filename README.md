@@ -1,4 +1,4 @@
-# Nawy Task - Automated EKS GitOps Platform
+<img width="1282" height="520" alt="Screenshot from 2026-05-19 01-04-10" src="https://github.com/user-attachments/assets/2882621d-7b8b-42f3-829b-168c58c214f7" /># Nawy Task - Automated EKS GitOps Platform
 
 This repository contains an end-to-end automated deployment of an AWS EKS cluster, configured with a GitOps CI/CD pipeline using Argo CD, and integrated with New Relic for infrastructure monitoring and alerting.
 
@@ -71,12 +71,21 @@ chmod +x setup.sh
 * Your GitHub Username (to configure container registry secrets uniquely).
 * Your GitHub Personal Access Token (securely passed to Terraform and AWS Secrets Manager).
 
-> `[Insert Screenshot: Terminal showing script running and completing successfully]`
+> `<img width="1282" height="520" alt="Screenshot from 2026-05-19 01-04-10" src="https://github.com/user-attachments/assets/070b3f3c-7dbb-48ab-9482-9de5c5dcf9da"
+><img width="1246" height="397" alt="Screenshot from 2026-05-18 23-31-46" src="https://github.com/user-attachments/assets/acf4dd3f-4ecb-4600-9fd1-5d8d7071a3bd"
+> <img width="1579" height="640" alt="Screenshot from 2026-05-18 23-34-51" src="https://github.com/user-attachments/assets/b330fbbb-ecb1-47d5-a30e-21b03e2804ee"
+> <img width="1625" height="759" alt="Screenshot from 2026-05-18 23-35-47" src="https://github.com/user-attachments/assets/7ec42e5a-ac78-44d4-ba13-86ea5ca81410" />
+/>
+/>
+/>
+`
 
 ### 3. Verify Deployment
-Once the script completes, verify that the Argo CD pods are running:
+Once the script completes, verify that the Argo CD pods are running and that the app is deployed:
 ```bash
 kubectl get pods -n argocd
+> `<img width="731" height="155" alt="Screenshot from 2026-05-18 23-36-03" src="https://github.com/user-attachments/assets/4c4b4b6f-2d88-44ac-a4cb-cd85862d02c6" />
+"
 ```
 
 ---
@@ -89,8 +98,11 @@ This project utilizes a pull-based GitOps deployment strategy.
 2. **Continuous Deployment (Argo CD Image Updater):** The Image Updater continuously polls GHCR. When it detects a new image tag, it automatically writes a commit back to this repository containing the new image override.
 3. **Synchronization (Argo CD):** Argo CD detects the Git commit and applies the rolling update to the `nawy-app` deployment in the EKS cluster.
 
-> `[Insert Screenshot: Argo CD UI showing Synced and Healthy App]`
-> `[Insert Screenshot: GitHub commit history showing the automated commit by argocd-image-updater]`
+> `<img width="1483" height="665" alt="Screenshot from 2026-05-19 00-54-06" src="https://github.com/user-attachments/assets/d490d0d4-0f25-4a1c-adcc-921adfef40ee"
+> <img width="1277" height="207" alt="Screenshot from 2026-05-19 00-54-57" src="https://github.com/user-attachments/assets/e5e0d9b4-1a98-4ed9-ae5b-9241d7dd4e08" />
+/>
+`
+
 
 ---
 
@@ -102,8 +114,12 @@ The cluster is monitored using **New Relic**. A custom NRQL query and workflow a
 * **Threshold:** Triggers a "Critical" violation if a pod restarts at least once within a 1-minute window.
 * **Notification:** Automatically sends an email alert detailing the crashing pod.
 
-> `[Insert Screenshot: New Relic Alert Condition / Dashboard]`
-> `[Insert Screenshot: Email inbox showing the Critical Alert notification]`
+> `<img width="1310" height="657" alt="Screenshot from 2026-05-18 23-44-48" src="https://github.com/user-attachments/assets/0a24626c-958c-41a6-83bf-289e5265c1b9" />
+`
+> `<img width="1920" height="419" alt="Screenshot from 2026-05-18 23-42-55" src="https://github.com/user-attachments/assets/67af935b-3471-41a9-9c60-9cdc01e7708a"
+> <img width="1426" height="769" alt="Screenshot from 2026-05-19 01-11-19" src="https://github.com/user-attachments/assets/3ae60389-51d7-43c6-9fe5-b527d7e2a241" />
+/>
+`
 
 ---
 
