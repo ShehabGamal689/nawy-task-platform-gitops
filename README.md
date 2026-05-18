@@ -61,8 +61,9 @@ cd nawy-task-platform-gitops
 Execute the master deployment script. This script handles Terraform initialization, cluster creation, `kubeconfig` updates, namespace setup, secrets injection, and Ansible bootstrapping.
 
 ```bash
-chmod +x run_everything.sh
-./run_everything.sh
+cd scripts
+chmod +x setup.sh
+./setup.sh
 ```
 
 **During execution, the script will prompt you for three inputs:**
