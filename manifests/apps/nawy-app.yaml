@@ -5,7 +5,7 @@ metadata:
   namespace: argocd
   annotations:
     argocd-image-updater.argoproj.io/image-list: myapp=ghcr.io/shehabgamal689/nawy-task-app
-    argocd-image-updater.argoproj.io/myapp.update-strategy: latest 
+    argocd-image-updater.argoproj.io/myapp.update-strategy: alphabetical 
     argocd-image-updater.argoproj.io/write-back-method: git
     argocd-image-updater.argoproj.io/myapp.helm.image-name: image.repository
     argocd-image-updater.argoproj.io/myapp.helm.image-tag: image.tag
