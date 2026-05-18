@@ -1,1 +1,30 @@
-
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: newrelic-bundle
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "1" 
+spec:
+  project: default
+  source:
+    repoURL: 'https://helm-charts.newrelic.com'
+    chart: nri-bundle
+    targetRevision: 5.0.8
+    helm:
+      values: |
+        global:
+          licenseKey: "eb60b1f8612a460cd613d404b8c44182f0dfNRAL"
+          cluster: "nawy-cluster"
+        newrelic-infrastructure:
+          privileged: true
+        newrelic-logging:
+          enabled: true
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: newrelic
+  syncPolicy:
+    automated:
+      prune: true
+    syncOptions:
+      - CreateNamespace=true
