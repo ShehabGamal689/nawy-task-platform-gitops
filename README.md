@@ -33,6 +33,7 @@ Before running the automated setup, ensure the following tools are installed and
 4. **Kubectl:** Installed and matching the EKS cluster version.
 5. **AWS S3 Bucket:** An existing S3 bucket in your AWS account to store the Terraform remote state.
 6. **GitHub Personal Access Token (PAT):** A token with `repo` and `read:packages`/`write:packages` permissions.
+7. **A pre-built image of your application stored in your GitHub image registry.
 
 ### 📝 Important: Forking the Repository
 Because this is a GitOps project, Argo CD and GitHub Actions need to read/write to the repository they are deployed from. 
