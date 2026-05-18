@@ -1,0 +1,8 @@
+helm:
+  parameters:
+  - name: image.repository
+    value: ghcr.io/shehabgamal689/nawy-task-app
+    forcestring: true
+  - name: image.tag
+    value: 1629d9def072812107da0855fbf8e66653144500
+    forcestring: true
