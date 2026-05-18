@@ -2,8 +2,8 @@ replicaCount: 2
 
 image:
   repository: ghcr.io/shehabgamal689/nawy-task-app
-  tag: "e723765256e3485779311b135476ebb4eb9e7a5e" 
-  pullPolicy: IfNotPresent
+  tag: "latest" 
+  pullPolicy: Always
 
 service:
   type: LoadBalancer
