@@ -1,7 +1,7 @@
 replicaCount: 2
 
 image:
-  repository: ghcr.io/YOUR_GITHUB_USER/nawy-app
+  repository: ghcr.io/ShehabGamal689/nawy-app
   tag: "latest" 
   pullPolicy: IfNotPresent
 
