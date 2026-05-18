@@ -14,6 +14,8 @@ spec:
       labels:
         app: {{ .Chart.Name }}
     spec:
+      imagePullSecrets:
+        - name: ghcr-login
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -21,5 +23,6 @@ spec:
           ports:
             - name: http
               containerPort: 3000
+              protocol: TCP
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
