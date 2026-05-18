@@ -1,4 +1,4 @@
-<img width="1282" height="520" alt="Screenshot from 2026-05-19 01-04-10" src="https://github.com/user-attachments/assets/2882621d-7b8b-42f3-829b-168c58c214f7" /># Nawy Task - Automated EKS GitOps Platform
+# Nawy Task - Automated EKS GitOps Platform
 
 This repository contains an end-to-end automated deployment of an AWS EKS cluster, configured with a GitOps CI/CD pipeline using Argo CD, and integrated with New Relic for infrastructure monitoring and alerting.
 
@@ -85,6 +85,9 @@ Once the script completes, verify that the Argo CD pods are running and that the
 ```bash
 kubectl get pods -n argocd
 > `<img width="731" height="155" alt="Screenshot from 2026-05-18 23-36-03" src="https://github.com/user-attachments/assets/4c4b4b6f-2d88-44ac-a4cb-cd85862d02c6" />
+<img width="1282" height="520" alt="Screenshot from 2026-05-19 01-04-10" src="https://github.com/user-attachments/assets/2882621d-7b8b-42f3-829b-168c58c214f7" />
+<img width="731" height="155" alt="Screenshot from 2026-05-18 23-36-03" src="https://github.com/user-attachments/assets/abdc9d6d-616e-4fa6-ae40-63b4aea1b005" />
+
 "
 ```
 
