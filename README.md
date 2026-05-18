@@ -20,7 +20,7 @@ This project separates infrastructure, configuration, and application deployment
 * **GitOps (Argo CD):** Automates application deployment, synchronizing state directly from this Git repository.
 * **Monitoring (New Relic):** Tracks Kubernetes metrics and triggers email alerts on critical events (e.g., Pod CrashLoops).
 
-> `[Insert Screenshot: Architecture Diagram]`
+> <img width="980" height="1066" alt="nawy_gitops_architecture (1)" src="https://github.com/user-attachments/assets/623654f7-917d-49d4-8961-b847764833c3" />
 
 ---
 
