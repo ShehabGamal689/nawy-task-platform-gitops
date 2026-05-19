@@ -6,11 +6,11 @@ image:
   pullPolicy: Always
 
 service:
-  type: LoadBalancer
+  type: ClusterIP
   port: 80
 
 ingress:
-  enabled: false
+  enabled: true
   className: "alb" 
   hosts:
     - host: nawy-app.local
