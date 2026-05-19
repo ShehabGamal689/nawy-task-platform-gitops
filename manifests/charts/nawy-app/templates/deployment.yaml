@@ -24,5 +24,13 @@ spec:
             - name: http
               containerPort: 3000
               protocol: TCP
+          
+          env:
+            - name: NEW_RELIC_LICENSE_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: newrelic-apm-key
+                  key: NEW_RELIC_LICENSE_KEY
+                  
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
