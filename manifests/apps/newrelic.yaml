@@ -14,12 +14,13 @@ spec:
     helm:
       values: |
         global:
-          licenseKey: "eb60b1f8612a460cd613d404b8c44182f0dfNRAL"
+          customSecretName: "newrelic-key"
+          customSecretLicenseKey: "licenseKey"
           cluster: "nawy-cluster"
         newrelic-infrastructure:
           privileged: true
-          ksm: # Fixed: changed from kms to ksm (Kube State Metrics)
-            resources: # Fixed: removed the extra :s typo
+          ksm: 
+            resources: 
               limits:
                 memory: 256Mi # Fixed: removed space
               requests:
