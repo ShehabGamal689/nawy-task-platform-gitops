@@ -12,8 +12,12 @@ service:
 ingress:
   enabled: true
   className: "alb" 
+  annotations:
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+    external-dns.alpha.kubernetes.io/hostname: devopsawy.site
   hosts:
-    - host: nawy-app.local
+    - host: devopsawy.site
       paths:
         - path: /
           pathType: Prefix
