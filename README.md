@@ -109,6 +109,7 @@ The cluster is monitored using **New Relic**. A custom NRQL query and workflow a
 * **Threshold:** Triggers a "Critical" violation if a pod restarts at least once within a 1-minute window.
 * **Notification:** Automatically sends an email alert detailing the crashing pod.
 
+> <img width="1693" height="731" alt="Screenshot from 2026-05-20 00-52-29" src="https://github.com/user-attachments/assets/b9d83300-5b8a-4af7-92a8-1a4e8a8a0571" />
 > <img width="1310" height="657" alt="Screenshot from 2026-05-18 23-44-48" src="https://github.com/user-attachments/assets/0a24626c-958c-41a6-83bf-289e5265c1b9" />
 > <img width="1920" height="419" alt="Screenshot from 2026-05-18 23-42-55" src="https://github.com/user-attachments/assets/67af935b-3471-41a9-9c60-9cdc01e7708a" />
 > <img width="1426" height="769" alt="Screenshot from 2026-05-19 01-11-19" src="https://github.com/user-attachments/assets/3ae60389-51d7-43c6-9fe5-b527d7e2a241" />
