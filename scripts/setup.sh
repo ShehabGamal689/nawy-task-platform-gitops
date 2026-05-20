@@ -20,7 +20,7 @@ echo "================================================="
 echo "Step 1: Terraform Apply..."
 cd infra
 
-terraform init -backend-config="bucket=$S3_BUCKET" -upgrade
+terraform init -backend-config="bucket=$S3_BUCKET" -upgrade -reconfigure
 
 terraform apply -var="github_token=$GITHUB_TOKEN" -auto-approve
 
