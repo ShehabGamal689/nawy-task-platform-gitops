@@ -16,11 +16,16 @@ ingress:
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
     external-dns.alpha.kubernetes.io/hostname: devopsawy.site
+    
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS":443}]'
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:346518713328:certificate/YOUR_ACTUAL_ID_HERE
+    alb.ingress.kubernetes.io/ssl-redirect: '443'
   hosts:
     - host: devopsawy.site
       paths:
         - path: /
           pathType: Prefix
+
 
 resources:
   requests:
