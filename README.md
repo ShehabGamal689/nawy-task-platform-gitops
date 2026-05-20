@@ -83,7 +83,8 @@ Once the script completes, verify that the Argo CD pods are running and that the
 kubectl get pods -n argocd
 ```
 > <img width="1282" height="520" alt="Screenshot from 2026-05-19 01-04-10" src="https://github.com/user-attachments/assets/2882621d-7b8b-42f3-829b-168c58c214f7" />
-> <img width="731" height="155" alt="Screenshot from 2026-05-18 23-36-03" src="https://github.com/user-attachments/assets/abdc9d6d-616e-4fa6-ae40-63b4aea1b005" />
+> <img width="492" height="104" alt="Screenshot from 2026-05-20 05-02-38" src="https://github.com/user-attachments/assets/b2fc2b4f-f553-4282-aac9-487f18049b7a" />
+
 
 
 ---
