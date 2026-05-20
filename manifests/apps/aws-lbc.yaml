@@ -12,11 +12,19 @@ spec:
     helm:
       parameters:
         - name: clusterName
-          value: nawy-cluster 
+          value: nawy-cluster
         - name: serviceAccount.create
           value: "true"
+        - name: serviceAccount.name
+          value: aws-load-balancer-controller
+        - name: region
+          value: us-east-1
+        - name: vpcId
+          value: "vpc-012b28d9c3f60d4f3"
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: kube-system
   syncPolicy:
-    automated: { prune: true, selfHeal: true }
+    automated:
+      prune: true
+      selfHeal: true
