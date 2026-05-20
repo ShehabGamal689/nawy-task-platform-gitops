@@ -196,7 +196,7 @@ This project utilizes a pull-based GitOps deployment strategy.
 
 
 
-> <img width="1483" height="665" alt="Screenshot from 2026-05-19 00-54-06" src="https://github.com/user-attachments/assets/d490d0d4-0f25-4a1c-adcc-921adfef40ee" />
+> <img width="1891" height="581" alt="Screenshot from 2026-05-20 05-08-23" src="https://github.com/user-attachments/assets/1689822a-fe49-43a9-9b87-631898c702d9" />
 
 > <img width="1277" height="207" alt="Screenshot from 2026-05-19 00-54-57" src="https://github.com/user-attachments/assets/e5e0d9b4-1a98-4ed9-ae5b-9241d7dd4e08" />
 
