@@ -1,11 +1,5 @@
-variable "github_token" {
-  description = "GitHub PAT for ArgoCD and GHCR"
-  type        = string
-  sensitive   = true
-}
-
 resource "aws_secretsmanager_secret" "git_credentials" {
-  name = "gitops-secrets-vault"
+  name                    = "gitops-secrets-vault"
   recovery_window_in_days = 0 
 }
 
