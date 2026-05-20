@@ -18,9 +18,11 @@ This repository contains an end-to-end automated deployment of an AWS EKS cluste
 
 5. [Monitoring and Alerts](#-monitoring-and-alerts)
 
-6. [Assumptions Made](#-assumptions-made)
+6. [Core Features & Enhancements](#-core-features--enhancements) 
 
-7. [Cleanup](#-cleanup)
+7. [Assumptions Made](#-assumptions-made)
+
+8. [Cleanup](#-cleanup)
 
 
 
@@ -47,7 +49,6 @@ This project separates infrastructure, configuration, and application deployment
 
 
 ---
-
 
 
 ## 📋 Prerequisites
@@ -232,6 +233,17 @@ The cluster is monitored using **New Relic**. A custom NRQL query and workflow a
 
 
 
+
+--
+
+## 🛡️ Core Features & Enhancements
+* **SSL/TLS Security:** Automated provisioning of SSL certificates via **AWS Certificate Manager (ACM)**.
+* **Automated DNS:** Integration with **ExternalDNS** and **Route 53** for dynamic service discovery.
+* **Secure Traffic Routing:** Configured **AWS ALB** with automatic HTTP-to-HTTPS (301) redirection.
+* **Auto-Scalability:** Implemented **Horizontal Pod Autoscaler (HPA)** backed by the Metrics Server, scaling from 2 to 5 replicas based on CPU utilization.
+* **Infrastructure Resilience:** Configured with robust Kubernetes `Resource Requests/Limits` and Multi-AZ deployment.
+
+---
 
 
 ---
