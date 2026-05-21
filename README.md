@@ -147,7 +147,6 @@ chmod +x setup.sh
 
 
 
-> <img width="1282" height="520" alt="Screenshot from 2026-05-19 01-04-10" src="https://github.com/user-attachments/assets/070b3f3c-7dbb-48ab-9482-9de5c5dcf9da" />
 
 > <img width="1246" height="397" alt="Screenshot from 2026-05-18 23-31-46" src="https://github.com/user-attachments/assets/acf4dd3f-4ecb-4600-9fd1-5d8d7071a3bd" />
 
