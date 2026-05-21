@@ -69,7 +69,7 @@ Before running the automated setup, ensure the following tools are installed and
 
 6. **GitHub Personal Access Token (PAT):** A token with `repo` and `read:packages`/`write:packages` permissions.
 
-7. **Containerization:** A pre-built image of your application stored in your GitHub image registry.
+7. **Containerization:** A pre-built image of your application stored in your GitHub container registry.
 
 
 
