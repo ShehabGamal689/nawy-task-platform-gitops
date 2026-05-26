@@ -17,3 +17,11 @@ output "oidc_provider_url" {
   description = "The OIDC Provider URL for IRSA"
   value       = module.eks.oidc_provider_url
 }
+
+output "route53_name_servers" {
+  value = module.eks.name_servers
+}
+
+output "external_dns_role_arn" { 
+  value = module.eks.external_dns_role_arn 
+}

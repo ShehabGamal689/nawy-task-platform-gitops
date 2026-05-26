@@ -12,7 +12,10 @@ module "vpc" {
 module "eks" {
   source       = "./modules/eks"
   cluster_name = "nawy-cluster"
-  subnet_ids   = module.vpc.subnet_ids 
+  vpc_id             = module.vpc.vpc_id
+  public_subnet_ids  = module.vpc.public_subnet_ids
+  private_subnet_ids = module.vpc.private_subnet_ids 
+  registrar_api_key = var.registrar_api_key
 }
 
 provider "helm" {
@@ -20,6 +23,18 @@ provider "helm" {
     host                   = module.eks.cluster_endpoint
     cluster_ca_certificate = base64decode(module.eks.cluster_ca_certificate)
     token                  = data.aws_eks_cluster_auth.cluster.token
+  }
+}
+
+provider "kubernetes" {
+  host                   = module.eks.cluster_endpoint
+  cluster_ca_certificate = base64decode(module.eks.cluster_ca_certificate)
+  
+  # This tells Terraform to use the AWS CLI to securely log into the cluster
+  exec {
+    api_version = "client.authentication.k8s.io/v1beta1"
+    command     = "aws"
+    args        = ["eks", "get-token", "--cluster-name", module.eks.cluster_name]
   }
 }
 
@@ -41,7 +56,7 @@ resource "helm_release" "aws_lbc" {
   chart      = "aws-load-balancer-controller"
   namespace  = "kube-system"
 
-  # Ensures EKS and Nodes are fully UP before trying to install
+  
   depends_on = [module.eks]
 
   set {

@@ -21,7 +21,7 @@ resource "aws_eks_cluster" "this" {
   role_arn = aws_iam_role.cluster_role.arn
 
   vpc_config {
-    subnet_ids = var.subnet_ids
+    subnet_ids = concat(var.public_subnet_ids, var.private_subnet_ids)
   }
   depends_on = [aws_iam_role_policy_attachment.cluster_policy]
 }
@@ -82,7 +82,7 @@ resource "aws_eks_node_group" "this" {
   cluster_name    = aws_eks_cluster.this.name
   node_group_name = "${var.cluster_name}-nodes"
   node_role_arn   = aws_iam_role.node_role.arn
-  subnet_ids      = var.subnet_ids
+  subnet_ids      = var.private_subnet_ids
 
   launch_template {
     id      = aws_launch_template.eks_nodes.id
@@ -120,7 +120,6 @@ resource "aws_iam_openid_connect_provider" "eks" {
 resource "aws_iam_policy" "load_balancer_controller" {
   name        = "AWSLoadBalancerControllerIAMPolicy"
   description = "Permissions for EKS Load Balancer Controller"
-  # Use the official AWS JSON policy content here
   policy = file("${path.module}/iam_policy.json") 
 }
 

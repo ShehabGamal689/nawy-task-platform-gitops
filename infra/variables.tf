@@ -3,3 +3,8 @@ variable "github_token" {
   type        = string
   sensitive   = true
 }
+variable "registrar_api_key" {
+  description = "API Key for your domain registrar to automate NS updates"
+  type        = string
+  sensitive   = true
+}
