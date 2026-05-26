@@ -17,16 +17,28 @@ spec:
           customSecretName: "newrelic-key"
           customSecretLicenseKey: "licenseKey"
           cluster: "nawy-cluster"
+          
+        # --- THE FIX: Enable Kube State Metrics & Events ---
+        ksm:
+          enabled: true
+        kube-state-metrics:
+          enabled: true
+        kubeEvents:
+          enabled: true
+        # ---------------------------------------------------
+
         newrelic-infrastructure:
           privileged: true
           ksm: 
             resources: 
               limits:
-                memory: 256Mi # Fixed: removed space
+                memory: 256Mi
               requests:
                 memory: 128Mi
+                
         newrelic-logging:
           enabled: true
+          
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: newrelic
