@@ -17,15 +17,12 @@ spec:
           customSecretName: "newrelic-key"
           customSecretLicenseKey: "licenseKey"
           cluster: "nawy-cluster"
-          
-        # --- THE FIX: Enable Kube State Metrics & Events ---
         ksm:
           enabled: true
         kube-state-metrics:
           enabled: true
         kubeEvents:
           enabled: true
-        # ---------------------------------------------------
 
         newrelic-infrastructure:
           privileged: true
