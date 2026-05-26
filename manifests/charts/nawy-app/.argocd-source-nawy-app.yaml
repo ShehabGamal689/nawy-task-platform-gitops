@@ -4,5 +4,5 @@ helm:
     value: ghcr.io/shehabgamal689/nawy-task-app
     forcestring: true
   - name: image.tag
-    value: ff92dbdda146f6665ba25996af1b891e5840b435
+    value: 54bcb002f035bf96f423b199eb8f14964e620db6
     forcestring: true
