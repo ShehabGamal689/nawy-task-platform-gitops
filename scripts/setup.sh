@@ -14,8 +14,13 @@ read -p "Enter your GitHub Username: " GITHUB_USERNAME
 read -sp "Enter your GitHub Personal Access Token: " GITHUB_TOKEN
 echo ""
 read -sp "Enter your New Relic License Key: " NR_LICENSE_KEY
+echo ""
+read -sp "Enter your Domain Registrar API Key: " REGISTRAR_API_KEY
+echo ""
 echo -e "\n Credentials received."
 echo "================================================="
+export TF_VAR_registrar_api_key=$REGISTRAR_API_KEY
+
 
 echo "Step 1: Terraform Apply..."
 cd infra
