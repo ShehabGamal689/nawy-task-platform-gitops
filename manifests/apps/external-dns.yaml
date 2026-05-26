@@ -15,6 +15,12 @@ spec:
           value: aws
         - name: policy
           value: sync 
+        - name: serviceAccount.create
+          value: "false" 
+        - name: serviceAccount.name
+          value: "external-dns" 
+        - name: txtOwnerId
+          value: "nawy-cluster"  
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: kube-system
