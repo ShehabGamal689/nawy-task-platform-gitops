@@ -68,4 +68,3 @@ ansible-playbook install-argocd.yaml
 
 echo "================================================="
 echo " DEPLOYMENT COMPLETE!"
-echo "To check Argo CD pod status, run: kubectl get pods -n argocd"
