@@ -51,7 +51,7 @@ echo "Fetching GitHub token from AWS Secrets Manager..."
 FETCHED_TOKEN=$(aws secretsmanager get-secret-value --secret-id gitops-secrets-vault --query SecretString --output text --region $AWS_REGION)
 
 kubectl create secret generic github-token --from-literal=username=$GITHUB_USERNAME --from-literal=password=$FETCHED_TOKEN -n argocd --dry-run=client -o yaml | kubectl apply -f -
-kubectl create secret docker-registry ghcr-login --docker-server=ghcr.io --docker-username=ShehabGamal689 --docker-password=$FETCHED_TOKEN -n nawy-app --dry-run=client -o yaml | kubectl apply -f -
+kubectl create secret docker-registry ghcr-login --docker-server=ghcr.io --docker-username=$GITHUB_USERNAME --docker-password=$FETCHED_TOKEN -n nawy-app --dry-run=client -o yaml | kubectl apply -f -
 
 echo "Injecting New Relic Secrets..."
 kubectl create secret generic newrelic-key --from-literal=licenseKey=$NR_LICENSE_KEY -n newrelic --dry-run=client -o yaml | kubectl apply -f -
