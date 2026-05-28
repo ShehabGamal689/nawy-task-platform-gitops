@@ -20,14 +20,14 @@ echo ""
 echo -e "\n Credentials received."
 echo "================================================="
 export TF_VAR_registrar_api_key=$REGISTRAR_API_KEY
-
+export TF_VAR_github_token=$GITHUB_TOKEN
 
 echo "Step 1: Terraform Apply..."
 cd infra
 
 terraform init -backend-config="bucket=$S3_BUCKET" -upgrade -reconfigure
 
-terraform apply -var="github_token=$GITHUB_TOKEN" -auto-approve
+terraform apply -auto-approve
 
 CLUSTER_NAME=$(terraform output -raw cluster_name)
 AWS_REGION=$(terraform output -raw aws_region)
@@ -68,3 +68,4 @@ ansible-playbook install-argocd.yaml
 
 echo "================================================="
 echo " DEPLOYMENT COMPLETE!"
+
