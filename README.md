@@ -279,6 +279,6 @@ To destroy the cluster and avoid incurring unnecessary AWS charges, run the foll
 
 cd infra
 
-terraform destroy -var="github_token=YOUR_GITHUB_TOKEN"
+terraform destroy -auto-approve
 
 ```
