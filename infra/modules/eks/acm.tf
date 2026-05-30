@@ -2,7 +2,6 @@ resource "aws_route53_zone" "main" {
   name = "devopsnawy.qzz.io" 
 }
 
-
 resource "null_resource" "update_registrar_ns" {
   triggers = {
     ns_records = join(",", aws_route53_zone.main.name_servers)

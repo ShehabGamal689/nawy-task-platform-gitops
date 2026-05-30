@@ -40,7 +40,7 @@ resource "aws_subnet" "private_1" {
   vpc_id                  = aws_vpc.this.id
   cidr_block              = cidrsubnet(var.vpc_cidr, 8, 3) 
   availability_zone       = "us-east-1a"
-  map_public_ip_on_launch = false # NO Public IPs (Secure Vault)
+  map_public_ip_on_launch = false 
   tags = {
     Name                                        = "${var.cluster_name}-private-1"
     "kubernetes.io/cluster/${var.cluster_name}" = "shared"

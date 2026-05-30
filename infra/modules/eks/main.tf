@@ -54,19 +54,6 @@ resource "aws_iam_role_policy_attachment" "node_policy_3" {
   role       = aws_iam_role.node_role.name
 }
 
-resource "aws_iam_policy" "lbc_policy" {
-  name        = "${var.cluster_name}-lbc-policy"
-  description = "Permissions for AWS Load Balancer Controller"
-  # This reads the json file we created earlier
-  policy      = file("${path.module}/iam_policy.json")
-}
-
-resource "aws_iam_role_policy_attachment" "lbc_policy_attachment" {
-  policy_arn = aws_iam_policy.lbc_policy.arn
-  role       = aws_iam_role.node_role.name
-}
-
-
 resource "aws_launch_template" "eks_nodes" {
   name = "${var.cluster_name}-node-template"
 
@@ -101,7 +88,7 @@ resource "aws_eks_node_group" "this" {
     aws_iam_role_policy_attachment.node_policy_1,
     aws_iam_role_policy_attachment.node_policy_2,
     aws_iam_role_policy_attachment.node_policy_3,
-    aws_iam_role_policy_attachment.lbc_policy_attachment 
+    aws_iam_role_policy_attachment.node_policy_lbc 
   ]
 }
 
